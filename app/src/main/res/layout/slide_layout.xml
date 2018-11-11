@@ -29,6 +29,8 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_weight="0.6"
+                    android:padding="10dp"
+                    android:background="@drawable/image_style"
                     android:src="@drawable/eat_icon" />
 
                 <TextView
