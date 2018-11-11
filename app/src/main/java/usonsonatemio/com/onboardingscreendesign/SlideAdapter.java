@@ -21,21 +21,27 @@ public class SlideAdapter extends PagerAdapter {
 
     //Arraya
     public int[] slide_images = {
-            R.drawable.eat_icon,
-            R.drawable.sleep_icon,
-            R.drawable.code_icon
+            R.drawable.period_blood,
+            R.drawable.ic_pms,
+            R.drawable.calendar_duracion,
+            R.drawable.period_blood,
+            R.drawable.birthday
     };
 
     public String[] slide_headings= {
-            "EAT",
-            "SLEEP",
-            "CODE"
+            "PERIODO",
+            "PMS",
+            "DURACIÓN DEL CICLO",
+            "ÚLTIMO PERIODO",
+            "CUMPLEAÑOS"
     };
 
     public String[] slide_descs = {
-            "EAT_bdhcbdhcbsajhcbshjcbdshjcbschjsdbchjsdbcdhbcdsh",
-            "SLEEP_fjifndjicndsjcndajcnajkcnajkcnaajkcnsajkcnsaj",
-            "CODE_asdbsajhcbsahjcbsaahjcbsahjcbahjcbachjdadbchjd"
+            "¿Conoces cuánto dura tu periodo?",
+            "¿Sufres el síndrome premenstrual?",
+            "¿Cuánto dura tu ciclo normalmente?",
+            "¿Recuerdas la fecha de tu último periodo?",
+            "¿Cuál es tu fecha de cumpleaños?"
     };
 
     @Override

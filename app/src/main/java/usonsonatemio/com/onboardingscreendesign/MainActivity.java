@@ -8,6 +8,7 @@ import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView[] mDtos;
     private Button btnAnterior, btnSiguiente;
     private int mCurrentPage;
+    private RelativeLayout maincontainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         btnAnterior = findViewById(R.id.btnPrevio);
         btnSiguiente = findViewById(R.id.btnSiguiente);
         slideAdapter = new SlideAdapter(this);
+        maincontainer = findViewById(R.id.MainContainer);
 
         mSlideViewPager.setAdapter(slideAdapter);
 
@@ -53,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addDotsIndicator(int position){
-        mDtos = new TextView[3];
+        mDtos = new TextView[5];
         mDotLayout.removeAllViews();
 
         for (int i = 0; i <  mDtos.length; i++){
