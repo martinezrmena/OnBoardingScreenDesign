@@ -1,5 +1,6 @@
 package usonsonatemio.com.onboardingscreendesign;
 
+import android.app.DatePickerDialog;
 import android.opengl.Visibility;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnAnterior, btnSiguiente;
     private int mCurrentPage;
     private RelativeLayout maincontainer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mSlideViewPager.setCurrentItem(mCurrentPage + 1);
+
+                if(btnSiguiente.getText().equals("Terminar")){
+                    Toast.makeText(MainActivity.this, "Duracion periodo: " + slideAdapter.getPERIODO_DURACION() +
+                            " Duracion PMS: " + slideAdapter.getDURACION_PMS() + " Duracion Ciclo: " + slideAdapter.getDURACION_CICLO()+
+                            " Ultimo periodo: "+ slideAdapter.getULTIMO_PERIODO() + " Cumpleaños: " + slideAdapter.getCUMPLEAÑOS(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -76,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     ViewPager.OnPageChangeListener viewListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -89,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
             addDotsIndicator(position);
             mCurrentPage = position;
 
-
+            //region Botones_Movimiento
             if(position == 0){
                 btnSiguiente.setEnabled(true);
                 btnAnterior.setEnabled(false);
@@ -114,6 +122,8 @@ public class MainActivity extends AppCompatActivity {
                 btnAnterior.setText("Anterior");
                 btnSiguiente.setText("Siguiente");
             }
+            //endregion
+
         }
 
         @Override
@@ -121,4 +131,29 @@ public class MainActivity extends AppCompatActivity {
 
         }
     };
+
+    @Override
+    protected void onSaveInstanceState(Bundle guardardatos) {
+        super.onSaveInstanceState(guardardatos);
+        //Guardamos la informacion
+        guardardatos.putInt("PERIODO_DURACION", slideAdapter.getPERIODO_DURACION());
+        guardardatos.putInt("DURACION_PMS", slideAdapter.getDURACION_PMS());
+        guardardatos.putInt("DURACION_CICLO", slideAdapter.getDURACION_CICLO());
+        guardardatos.putString("ULTIMO_PERIODO", slideAdapter.getULTIMO_PERIODO());
+        guardardatos.putString("CUMPLEAÑOS", slideAdapter.getCUMPLEAÑOS());
+
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        //Restauramos los valores en cada una de las varibles
+        slideAdapter.setPERIODO_DURACION(savedInstanceState.getInt("PERIODO_DURACION"));
+        slideAdapter.setDURACION_PMS(savedInstanceState.getInt("DURACION_PMS"));
+        slideAdapter.setDURACION_CICLO(savedInstanceState.getInt("DURACION_CICLO"));
+        slideAdapter.setULTIMO_PERIODO(savedInstanceState.getString("ULTIMO_PERIODO"));
+        slideAdapter.setCUMPLEAÑOS(savedInstanceState.getString("CUMPLEAÑOS"));
+
+    }
+
 }
